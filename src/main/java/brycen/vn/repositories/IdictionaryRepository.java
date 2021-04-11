@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import brycen.vn.model.Grammardict;
 
 @Repository
-public interface DictionaryRepository extends  JpaRepository<Grammardict, Long>{
+public interface IdictionaryRepository extends  JpaRepository<Grammardict, Long>{
 	@Query(value = "SELECT * FROM gramardict where level = ?1", nativeQuery = true)
 	List<Grammardict> getDictionaryByLevel(Long level);	
 	

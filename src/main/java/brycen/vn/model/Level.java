@@ -12,6 +12,13 @@ import lombok.ToString;
 @Table(name="level")
 public class Level {
 
+	public Level(long id, Collection<Grammardict> grammardict, @NotNull String level_name) {
+		super();
+		this.id = id;
+		this.grammardict = grammardict;
+		this.level_name = level_name;
+	}
+
 	public long getId() {
 		return id;
 	}
