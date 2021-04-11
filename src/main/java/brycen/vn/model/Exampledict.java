@@ -10,9 +10,6 @@ import javax.validation.constraints.Size;
 
 @Table(name="exampledict")
 public class Exampledict {
-	
-
-	
 
 	@Id
 	@GeneratedValue(strategy= GenerationType.SEQUENCE)
@@ -72,6 +69,18 @@ public class Exampledict {
 	@Column(columnDefinition = "int(1) default '1'")
 	private int active;
 	
+	public Exampledict(long id, @Size(min = 4, max = 255) String kanjiSentemce,
+			@Size(min = 4, max = 255) String vnSentence, @Size(min = 4, max = 455) String hiraKataSentence, int active,
+			Grammardict grammardict) {
+		super();
+		this.id = id;
+		this.kanjiSentemce = kanjiSentemce;
+		this.vnSentence = vnSentence;
+		this.hiraKataSentence = hiraKataSentence;
+		this.active = active;
+		this.grammardict = grammardict;
+	}
+
 	public int getActive() {
 		return active;
 	}
@@ -80,20 +89,13 @@ public class Exampledict {
 		this.active = active;
 	}
 	
-	
-	
-	
 	@ManyToOne
     @JoinColumn(name="id_grammar", nullable=false,insertable=false, updatable=false)
 	private Grammardict grammardict;
 	
-
-
 	public Exampledict() {
 		
 	}
-	
-	
 	
 }
 

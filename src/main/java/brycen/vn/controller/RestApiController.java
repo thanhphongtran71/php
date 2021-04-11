@@ -13,9 +13,10 @@ import brycen.vn.exception.ResourceNotFoundException;
 import brycen.vn.model.Exampledict;
 import brycen.vn.model.Grammardict;
 import brycen.vn.model.Level;
-import brycen.vn.repositories.DictionaryRepository;
+import brycen.vn.repositories.IdictionaryRepository;
+import brycen.vn.repositories.IlessonRepository;
 import brycen.vn.repositories.ExampledictRepository;
-import brycen.vn.repositories.GrammardictRepository;
+//import brycen.vn.repositories.GrammardictRepository;
 import brycen.vn.repositories.LevelRepository;
 import brycen.vn.service.IGrammardictService;
 
@@ -33,10 +34,13 @@ public class RestApiController {
 	private LevelRepository levelRepository;
 	
 	@Autowired
-	private DictionaryRepository dictionaryRepository;
+	private IdictionaryRepository dictionaryRepository;
 	
 	@Autowired
 	private IGrammardictService iGrammardictService;
+	
+	@Autowired
+	private IlessonRepository lessonRepository;
 	
 	@GetMapping("/gramardict")
 	public List<Grammardict> getAllGrammardict(){
@@ -62,5 +66,15 @@ public class RestApiController {
 		return dictionaryRepository.getDictionaryByLevel(level);
 		
 	}
+	
+	@GetMapping("/lesson/{level}/{lesson}")
+	public List<Grammardict> getDictionaryByLevelandLesso(@PathVariable(value = "level") Long level,
+			@PathVariable(value = "lesson") int lesson)
+			throws ResourceNotFoundException {
+		
+		return lessonRepository.getDictionaryByLevel(level, lesson);
+		
+	}
+	
 
 }
