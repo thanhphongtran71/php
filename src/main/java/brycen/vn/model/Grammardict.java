@@ -15,10 +15,26 @@ import lombok.ToString;
 @Table(name="gramardict")
 public class Grammardict {
 	
+	public Grammardict(long id, int lesson, Collection<Exampledict> exampledict, Level level,
+			@Size(min = 4, max = 255) String titleJp, @Size(min = 4, max = 500) String titleVn,
+			@Size(min = 4, max = 500) String grammmerJp, @Size(min = 4, max = 1200) String note, int active) {
+		super();
+		this.id = id;
+		this.lesson = lesson;
+		this.exampledict = exampledict;
+		this.level = level;
+		this.titleJp = titleJp;
+		this.titleVn = titleVn;
+		this.grammmerJp = grammmerJp;
+		this.note = note;
+		this.active = active;
+	}
+
 	@Id
 	@GeneratedValue(strategy= GenerationType.SEQUENCE)
 	private long id;
 	
+	private int lesson;
 //	@OneToMany(mappedBy="grammardict")
 //	private Set<Exampledict> exampledict;
 //	
@@ -26,6 +42,14 @@ public class Grammardict {
 //	      return exampledict ;
 //	    }
 	
+	public int getLesson() {
+		return lesson;
+	}
+
+	public void setLesson(int lesson) {
+		this.lesson = lesson;
+	}
+
 	@OneToMany(mappedBy = "grammardict", cascade = CascadeType.ALL) 
     @EqualsAndHashCode.Exclude // không sử dụng trường này trong equals và hashcode
     @ToString.Exclude // Khoonhg sử dụng trong toString()
